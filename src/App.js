@@ -1,9 +1,14 @@
 import './App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import TaskList from './components/TaskList';
 
 function App() {
   return (
-    <div>
-      <h1>Hello World !</h1>
+    <div className='app'>
+      <div className="task-container">
+        <TaskList />
+      </div>
     </div>
   );
 }
