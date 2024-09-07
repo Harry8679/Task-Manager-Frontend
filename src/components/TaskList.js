@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TaskForm from './TaskForm'
 import Task from './Task'
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const TaskList = () => {
     const [formData, setFormData] = useState({
@@ -22,6 +23,13 @@ const TaskList = () => {
             return toast.error('Input field cannot be empty');
         }
         console.log(formData);
+        try {
+            await axios.post('http://localhost:4500/api/v1/tasks', formData);
+            setFormData({ ...formData, name: '' });
+        } catch (err) {
+            toast.error(err.message);
+            console.log(err);
+        }
     };
 
   return (
