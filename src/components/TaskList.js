@@ -48,8 +48,6 @@ const TaskList = () => {
         console.log(formData);
         try {
             await axios.post(`${URL}/api/v1/tasks`, formData);
-            // await axios.post('http://localhost:4500/api/v1/tasks', formData);
-            // await axios.post(`${URL}/api/v1/tasks`, formData);
             toast.success('Task created successfully');
             setFormData({ ...formData, name: '' });
         } catch (err) {
