@@ -1,5 +1,5 @@
 import './App.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TaskList from './components/TaskList';
 
@@ -8,6 +8,7 @@ function App() {
     <div className='app'>
       <div className="task-container">
         <TaskList />
+        <ToastContainer />
       </div>
     </div>
   );
