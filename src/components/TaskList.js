@@ -53,6 +53,10 @@ const TaskList = () => {
         setIsEditing(true);
     }
 
+    const updateTask = async () => {
+        alert('Hello');
+    };
+
     useEffect(() => {
         getTasks();
     }, []);
@@ -76,7 +80,7 @@ const TaskList = () => {
   return (
     <div>
         <h2>Task Manager</h2>
-        <TaskForm name={name} handleInputChange={handleInputChange} createTask={createTask} isEditing={isEditing} />
+        <TaskForm name={name} handleInputChange={handleInputChange} createTask={createTask} isEditing={isEditing} updateTask={updateTask} />
         <div className="--flex-between --pub">
             <p><b>Total Tasks :</b> 0</p>
             <p><b>Completed Tasks :</b> 0</p>
