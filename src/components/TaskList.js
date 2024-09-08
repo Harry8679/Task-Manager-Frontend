@@ -8,7 +8,7 @@ import loadingImg from '../assets/loader.gif';
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
-    const [completedTasks, setCompletedTasks] = useState([]);
+    // const [completedTasks, setCompletedTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [taskID, setTaskID] = useState('');
