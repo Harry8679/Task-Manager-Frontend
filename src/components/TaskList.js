@@ -65,6 +65,24 @@ const TaskList = () => {
             <p><b>Completed Tasks :</b> 0</p>
         </div>
         <hr />
+        {
+            isLoading && (
+                <div className='--flex-center'>
+                    <img src={loadingImg} alt="Loading" />
+                </div>
+            )
+        }
+        {
+            !isLoading && tasks.length === 0 ? (
+                <p className="--py">No task added. Please add a task</p>
+            ) : (
+                <>
+                    {tasks.map((task, index) => {
+                        return <Task />
+                    })}
+                </>
+            )
+        }
         <Task />
     </div>
   )
