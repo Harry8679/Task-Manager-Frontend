@@ -68,6 +68,19 @@ const TaskList = () => {
         };
     };
 
+    const setToComplete = async (task) => {
+        const newFormData = {
+            name: task.name,
+            completed: true
+        }
+        try {
+            await axios.put(`${URL}/api/v1/tasks/${task._id}`, newFormData);
+            getTasks();
+        } catch (err) {
+            toast.error(err.message);
+        }
+    };
+
     useEffect(() => {
         getTasks();
     }, []);
@@ -110,7 +123,7 @@ const TaskList = () => {
             ) : (
                 <>
                     {tasks.map((task, index) => {
-                        return <Task key={task._id} task={task} index={index} deleteTask={() => deleteTask(task._id)} getSingleTask={getSingleTask} />
+                        return <Task key={task._id} task={task} index={index} deleteTask={() => deleteTask(task._id)} getSingleTask={getSingleTask} setToComplete={setToComplete} />
                     })}
                 </>
             )
