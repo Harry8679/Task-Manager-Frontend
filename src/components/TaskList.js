@@ -45,6 +45,10 @@ const TaskList = () => {
         }
     };
 
+    const getSingleTask = async (task) => {
+        setFormData({ name: task.name, completed: false });
+    }
+
     useEffect(() => {
         getTasks();
     }, []);
@@ -87,7 +91,7 @@ const TaskList = () => {
             ) : (
                 <>
                     {tasks.map((task, index) => {
-                        return <Task key={task._id} task={task} index={index} deleteTask={() => deleteTask(task._id)} />
+                        return <Task key={task._id} task={task} index={index} deleteTask={() => deleteTask(task._id)} getSingleTask={getSingleTask} />
                     })}
                 </>
             )
