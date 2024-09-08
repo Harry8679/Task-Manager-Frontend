@@ -36,6 +36,15 @@ const TaskList = () => {
         }
     };
 
+    const deleteTask = async (id) => {
+        try {
+            await axios.delete(`${URL}/api/v1/tasks/${id}`);
+            getTasks();
+        } catch (err) {
+            toast.error(err.message);
+        }
+    };
+
     useEffect(() => {
         getTasks();
     }, []);
@@ -78,7 +87,7 @@ const TaskList = () => {
             ) : (
                 <>
                     {tasks.map((task, index) => {
-                        return <Task key={task._id} task={task} index={index} />
+                        return <Task key={task._id} task={task} index={index} deleteTask={() => deleteTask(task._id)} />
                     })}
                 </>
             )
@@ -87,4 +96,4 @@ const TaskList = () => {
   )
 }
 
-export default TaskList
+export default TaskList;
