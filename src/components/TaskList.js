@@ -8,7 +8,7 @@ import loadingImg from '../assets/loader.gif';
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
-    // const [completedTasks, setCompletedTasks] = useState([]);
+    const [completedTasks, setCompletedTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [taskID, setTaskID] = useState('');
@@ -46,6 +46,13 @@ const TaskList = () => {
             toast.error(err.message);
         }
     };
+
+    useEffect(() => {
+        const completTasks = tasks.filter((task) => (
+            task.completed === true
+        ));
+        setCompletedTasks(completTasks);
+    }, [tasks]);
 
     const getSingleTask = async (task) => {
         setFormData({ name: task.name, completed: false });
@@ -95,6 +102,7 @@ const TaskList = () => {
             await axios.post(`${URL}/api/v1/tasks`, formData);
             toast.success('Task created successfully');
             setFormData({ ...formData, name: '' });
+            getTasks();
         } catch (err) {
             toast.error(err.message);
             console.log(err);
@@ -105,10 +113,12 @@ const TaskList = () => {
     <div>
         <h2>Task Manager</h2>
         <TaskForm name={name} handleInputChange={handleInputChange} createTask={createTask} isEditing={isEditing} updateTask={updateTask} />
-        <div className="--flex-between --pub">
-            <p><b>Total Tasks :</b> 0</p>
-            <p><b>Completed Tasks :</b> 0</p>
-        </div>
+        {tasks.length > 0 && (
+            <div className="--flex-between --pub">
+                <p><b>Total Tasks :</b> {tasks.length}</p>
+                <p><b>Completed Tasks :</b> {completedTasks.length}</p>
+            </div>
+        )}
         <hr />
         {
             isLoading && (
