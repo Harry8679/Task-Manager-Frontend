@@ -10,6 +10,8 @@ const TaskList = () => {
     const [tasks, setTasks] = useState([]);
     const [completedTasks, setCompletedTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [taskID, setTaskID] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         completed: false
@@ -47,6 +49,8 @@ const TaskList = () => {
 
     const getSingleTask = async (task) => {
         setFormData({ name: task.name, completed: false });
+        setTaskID(task._id);
+        setIsEditing(true);
     }
 
     useEffect(() => {
@@ -72,7 +76,7 @@ const TaskList = () => {
   return (
     <div>
         <h2>Task Manager</h2>
-        <TaskForm name={name} handleInputChange={handleInputChange} createTask={createTask} />
+        <TaskForm name={name} handleInputChange={handleInputChange} createTask={createTask} isEditing={isEditing} />
         <div className="--flex-between --pub">
             <p><b>Total Tasks :</b> 0</p>
             <p><b>Completed Tasks :</b> 0</p>
